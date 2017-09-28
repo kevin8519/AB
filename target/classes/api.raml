@@ -1,0 +1,72 @@
+#%RAML 0.8
+
+title: cc_AccountInquiry
+version: 1.1
+documentation:
+ - title: Home
+   content: |
+     Welcome to the Credit Card API Documentation. This API
+     facilitaters the following
+     1. Consumer accesses web page: <!-- https://www.associatedbank.com/!> and logs in
+     2. ConsumerÃ¢â‚¬â„¢s home page is built (FiServ sends getCreditCardData with Unique ID to ESB)
+     3. ESB sends getCreditCardData with Unique ID to Elan
+     4. Elan returns Available Credit and Account Balance to ESB
+     5. ESB sends data to FiServ
+     6. Consumer sees credit card balance & available credit
+    
+
+/cc_AccountInquiry:
+ description: Provide the cc payment details
+ get:
+  queryParameters:
+    uniqueid:
+      type: string
+      minLength: 20
+      maxLength: 20
+      required: true
+        
+  responses:
+    200:
+      body: 
+        application/json:
+         example: |
+            
+              {"Status": "Success",  "CIF": "0000718085", "CC account #": "435996-6047", "ElanACCT -":      "2004865878946284" } 
+               
+  
+/hsa_AccountInquiry:
+ description: Provide the cc payment details
+ get:
+  queryParameters:
+    uniqueid:
+      type: string
+      minLength: 20
+      maxLength: 20
+      required: true
+        
+  responses:
+    200:
+      body: 
+        application/json:
+         example: |
+            
+              {"Status": "Success",  "CIF": "0000718085", "CC account #": "435996-6047", "ElanACCT -":      "hsa_accountInquiry" }  
+              
+/hsa_SingleSignOn:
+ description: Provide the cc payment details
+ get:
+  queryParameters:
+    uniqueid:
+      type: string
+      minLength: 20
+      maxLength: 20
+      required: true
+        
+  responses:
+    200:
+      body: 
+        application/json:
+         example: |
+            
+              {"Status": "Success",  "CIF": "0000718085", "CC account #": "435996-6047", "ElanACCT -":      "hsa_Singlesignon " }                 
+  
